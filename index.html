@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>GameDeals Formatter</title>
+        <link
+            rel="stylesheet"
+            href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="./styles/default.css" />
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar">
+                <span class="navbar-brand h1">GameDeals Formatter</span>
+            </nav>
+            <form id="game-form" class="mb-3">
+                <div class="form-group">
+                    <label for="game-id">Game ID</label>
+                    <input
+                        id="game-id"
+                        type="number"
+                        class="form-control"
+                        placeholder="3830"
+                    />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <textarea
+                id="output-area"
+                class="form-control mb-3"
+                rows="10"
+                readonly
+            ></textarea>
+            <div id="custom-alert" class="alert alert-info d-none"></div>
+        </div>
+
+        <script src="./scripts/index.js"></script>
+    </body>
+</html>

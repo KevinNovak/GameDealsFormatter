@@ -1,0 +1,11 @@
+**Name**: {NAME}
+
+**Steam Link**: {LINK}
+
+**Steam Rating**: {REVIEWS_PERCENT} positive from {REVIEWS_COUNT} reviews
+
+**Release Date**: {RELEASE_DATE}
+
+**Description**: {DESCRIPTION}
+
+**Tags**: {TAGS}
