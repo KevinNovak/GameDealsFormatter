@@ -2,7 +2,8 @@
 
 **Desktop App** - Automatically retrieve and format game information for the GameDeals subreddit.
 
-![Example](https://i.imgur.com/vW0gW68.png)
+![Example Output](https://i.imgur.com/vW0gW68.png)
+![Example Preview](https://i.imgur.com/TOrjoSI.png)
 
 ## References
 
