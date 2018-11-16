@@ -2,8 +2,6 @@
 
 **Desktop App** - Automatically retrieve and format game information for the GameDeals subreddit.
 
-**App output**:
-
 ![GameDeals Formatter App](https://i.imgur.com/ivNEYuO.png)
 
 **Reddit format**:
