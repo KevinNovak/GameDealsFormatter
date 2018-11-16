@@ -1,0 +1,1 @@
+[{DEAL_SITE}] {NAME} (${DEAL_PRICE} / {PERCENT_OFF}% off)

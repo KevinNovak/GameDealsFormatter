@@ -5,14 +5,18 @@ const path = require('path');
 
 let crawler = new Crawler({ callback: crawlerCallback });
 let reviewsRegex = new RegExp(/(\d{1,2}%)\D+([\d,]+)/);
-let template = fs
-    .readFileSync(path.join(__dirname, './template.txt'))
+
+let titleTemplate = fs
+    .readFileSync(path.join(__dirname, './templates/title-template.txt'))
+    .toString();
+let commentTemplate = fs
+    .readFileSync(path.join(__dirname, './templates/comment-template.txt'))
     .toString();
 
 let window;
 
 app.on('ready', () => {
-    window = new BrowserWindow({ width: 500, height: 600, resizable: false });
+    window = new BrowserWindow({ width: 820, height: 660, resizable: true });
     window.loadFile('index.html');
 
     window.on('closed', () => {
@@ -24,8 +28,11 @@ app.on('window-all-closed', () => {
     app.quit();
 });
 
-ipcMain.on('game-submit', (event, gameId) => {
-    crawler.queue(`https://store.steampowered.com/app/${gameId}/`);
+ipcMain.on('game-form-submit', (event, data) => {
+    crawler.queue({
+        uri: `https://store.steampowered.com/app/${data.gameId}/`,
+        data
+    });
 });
 
 function crawlerCallback(error, response, done) {
@@ -42,8 +49,9 @@ function crawlerCallback(error, response, done) {
         return;
     }
 
-    let formattedOutput = formatOutput(gameData);
-    window.webContents.send('output-generated', formattedOutput);
+    let title = formatTitle(response.options.data, gameData);
+    let comment = formatComment(gameData);
+    window.webContents.send('output-generated', { title, comment });
     done();
 }
 
@@ -98,8 +106,16 @@ function getGameData(link, $) {
     }
 }
 
-function formatOutput(gameData) {
-    return template
+function formatTitle(dealData, gameData) {
+    return titleTemplate
+        .replace('{DEAL_SITE}', dealData.dealSite)
+        .replace('{NAME}', gameData.name)
+        .replace('{DEAL_PRICE}', dealData.dealPrice)
+        .replace('{PERCENT_OFF}', dealData.percentOff);
+}
+
+function formatComment(gameData) {
+    return commentTemplate
         .replace('{NAME}', gameData.name)
         .replace('{LINK}', gameData.link)
         .replace('{REVIEWS_PERCENT}', gameData.reviewsPercent)
