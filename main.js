@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const Crawler = require('crawler');
 const fs = require('fs');
 const path = require('path');
@@ -22,6 +22,17 @@ app.on('ready', () => {
     window.on('closed', () => {
         window = null;
     });
+
+    // Open links in external browser
+    var handleRedirect = (event, url) => {
+        if (url != window.webContents.getURL()) {
+            event.preventDefault();
+            shell.openExternal(url);
+        }
+    };
+
+    window.webContents.on('will-navigate', handleRedirect);
+    window.webContents.on('new-window', handleRedirect);
 });
 
 app.on('window-all-closed', () => {
