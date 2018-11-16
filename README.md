@@ -4,11 +4,11 @@
 
 **App output**:
 
-![Example Output](https://i.imgur.com/vW0gW68.png)
+![GameDeals Formatter App](https://i.imgur.com/ivNEYuO.png)
 
 **Reddit format**:
 
-![Example Preview](https://i.imgur.com/TOrjoSI.png)
+![GameDeals Formatter Preview](https://i.imgur.com/TOrjoSI.png)
 
 ## References
 
